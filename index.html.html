@@ -1,0 +1,2465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GHL System Proposal — Elite Credit Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal-dark: #0d3b38;
+  --teal-mid: #155f59;
+  --teal-light: #1e8077;
+  --teal-pale: #e8f4f3;
+  --gold: #c9a84c;
+  --gold-light: #e8cc84;
+  --gold-pale: #fdf6e3;
+  --white: #ffffff;
+  --off-white: #f8f9f7;
+  --text-dark: #0d1f1e;
+  --text-mid: #3a5450;
+  --text-muted: #6b8c88;
+  --border: #d4e4e2;
+  --shadow: 0 4px 24px rgba(13,59,56,0.10);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--off-white);
+  color: var(--text-dark);
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* NAV */
+.nav {
+  background: var(--teal-dark);
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--gold-light);
+  letter-spacing: 0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--gold-light);
+  background: rgba(201,168,76,0.1);
+}
+
+/* PAGES */
+.page { display: none; }
+.page.active { display: block; }
+
+/* HERO */
+.hero {
+  background: var(--teal-dark);
+  padding: 72px 48px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.08);
+}
+
+.hero-bg-circle:nth-child(1) { width: 500px; height: 500px; top: -200px; right: -100px; }
+.hero-bg-circle:nth-child(2) { width: 300px; height: 300px; top: -80px; right: 80px; }
+.hero-bg-circle:nth-child(3) { width: 160px; height: 160px; top: 20px; right: 200px; }
+
+.hero-inner { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; }
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  line-height: 1.1;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 16px;
+  max-width: 620px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.hero-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,0.55);
+  max-width: 500px;
+  margin-bottom: 48px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.hero-cards {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 8px;
+  padding: 16px 20px;
+  min-width: 160px;
+}
+
+.hero-card-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 6px;
+}
+
+.hero-card-value {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--gold-light);
+}
+
+.gold-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold) 0%, transparent 50%);
+}
+
+/* CONTAINER */
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* SECTIONS */
+.section {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.section:last-child { border-bottom: none; }
+
+.section-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  width: 16px;
+  height: 1px;
+  background: var(--teal-light);
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--teal-dark);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.section-intro {
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 580px;
+  margin-bottom: 36px;
+  line-height: 1.75;
+}
+
+/* UNDERSTANDING GRID */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.info-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  transition: box-shadow 0.2s;
+}
+
+.info-card:hover { box-shadow: var(--shadow); }
+
+.info-card-icon { font-size: 20px; margin-bottom: 10px; }
+
+.info-card-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.info-card-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.info-card-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* PHASES */
+.phases { display: flex; flex-direction: column; gap: 0; }
+
+.phase {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 0 20px;
+  position: relative;
+}
+
+.phase:not(:last-child) .phase-connector {
+  position: absolute;
+  left: 27px;
+  top: 56px;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+
+.phase-num {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--teal-dark);
+  color: var(--gold-light);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.phase-body { padding: 12px 0 40px; }
+
+.phase-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--teal-dark);
+  margin-bottom: 6px;
+}
+
+.phase-week {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--teal-light);
+  background: var(--teal-pale);
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.phase-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+.phase-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.tag {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 3px;
+}
+
+.tag-teal { background: var(--teal-pale); color: var(--teal-mid); }
+.tag-gold { background: var(--gold-pale); color: #7a5c1e; }
+
+/* MOCKUP PREVIEWS */
+.mockup-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+}
+
+.mockup-tab {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 16px;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.2s;
+}
+
+.mockup-tab.active {
+  color: var(--teal-dark);
+  border-bottom-color: var(--teal-light);
+}
+
+.mockup-tab:hover { color: var(--teal-mid); }
+
+.mockup-panel { display: none; }
+.mockup-panel.active { display: block; }
+
+.mockup-frame {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.mockup-bar {
+  background: #f0f0f0;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mockup-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+
+.mockup-dot:nth-child(1) { background: #ff5f57; }
+.mockup-dot:nth-child(2) { background: #febc2e; }
+.mockup-dot:nth-child(3) { background: #28c840; }
+
+.mockup-url {
+  flex: 1;
+  background: var(--white);
+  border-radius: 4px;
+  height: 22px;
+  margin: 0 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+}
+
+.mockup-body { padding: 24px; }
+
+/* INTAKE FORM MOCKUP */
+.form-mockup-header {
+  background: var(--teal-dark);
+  margin: -24px -24px 24px;
+  padding: 24px;
+  color: var(--white);
+}
+
+.form-mockup-header h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.form-mockup-header p { font-size: 13px; color: rgba(255,255,255,0.55); }
+
+.form-row { margin-bottom: 14px; }
+
+.form-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-mid);
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-label span {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.form-input {
+  width: 100%;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--off-white);
+  padding: 0 12px;
+  font-size: 13px;
+  color: var(--text-dark);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+
+.upload-box {
+  border: 1.5px dashed var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  text-align: center;
+  background: var(--off-white);
+}
+
+.upload-box-icon { font-size: 20px; margin-bottom: 4px; }
+.upload-box-text { font-size: 12px; color: var(--text-muted); }
+
+.upload-box-link {
+  font-size: 12px;
+  color: var(--teal-light);
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.form-consent input { margin-top: 2px; flex-shrink: 0; }
+.form-consent label { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+.form-consent label a { color: var(--teal-light); }
+
+.form-btn {
+  width: 100%;
+  height: 42px;
+  background: var(--teal-dark);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.3px;
+}
+
+/* PIPELINE MOCKUP */
+.pipeline-cols {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.pipeline-col-header {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  padding: 6px 10px;
+  background: var(--off-white);
+  border-radius: 5px 5px 0 0;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.pipeline-col-body {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: 0 0 5px 5px;
+  padding: 8px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pipeline-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 12px;
+}
+
+.pipeline-card-name {
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 3px;
+}
+
+.pipeline-card-tag {
+  display: inline-block;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+.tag-new { background: #dbeafe; color: #1e40af; }
+.tag-contacted { background: #fef3c7; color: #92400e; }
+.tag-qualified { background: #d1fae5; color: #065f46; }
+.tag-client { background: #ede9fe; color: #5b21b6; }
+.tag-active { background: var(--teal-pale); color: var(--teal-mid); }
+
+.pipeline-card-date {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* WORKFLOW MOCKUP */
+.workflow-nodes {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+}
+
+.wf-node {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 20px;
+  width: 340px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.wf-node.trigger { border-color: var(--teal-light); background: var(--teal-pale); }
+.wf-node.action { border-color: var(--border); }
+.wf-node.condition { border-color: var(--gold); background: var(--gold-pale); transform: rotate(0deg); }
+.wf-node.sms { border-color: #7c3aed; background: #f5f3ff; }
+.wf-node.email { border-color: #0891b2; background: #ecfeff; }
+.wf-node.payment { border-color: #059669; background: #ecfdf5; }
+
+.wf-node-icon { font-size: 18px; flex-shrink: 0; }
+.wf-node-content {}
+.wf-node-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 2px; }
+.wf-node-title { font-size: 13px; font-weight: 600; color: var(--text-dark); }
+
+.wf-connector {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+  position: relative;
+}
+
+.wf-connector::after {
+  content: '▼';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8px;
+  color: var(--text-muted);
+}
+
+/* TAGS MOCKUP */
+.tags-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.tags-group { margin-bottom: 20px; }
+
+.tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.tag-pill {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: default;
+}
+
+.tp-lead { background: #dbeafe; color: #1d4ed8; }
+.tp-client { background: #d1fae5; color: #065f46; }
+.tp-source { background: #fef3c7; color: #92400e; }
+.tp-status { background: #ede9fe; color: #6d28d9; }
+.tp-b2b { background: #fee2e2; color: #b91c1c; }
+.tp-stage { background: var(--teal-pale); color: var(--teal-mid); }
+
+/* DASHBOARD MOCKUP */
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.dash-stat {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.dash-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--teal-dark);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.dash-stat-label { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+
+.dash-stat-change {
+  font-size: 11px;
+  color: #059669;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.dash-activity-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.dash-activity-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+
+.dash-activity-row:last-child { border-bottom: none; }
+
+.dash-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dash-activity-name { font-weight: 600; color: var(--text-dark); flex: 1; }
+.dash-activity-action { color: var(--text-muted); }
+.dash-activity-time { font-size: 11px; color: var(--text-muted); }
+
+/* A2P SECTION */
+.a2p-box {
+  background: var(--teal-dark);
+  border-radius: 12px;
+  padding: 36px 40px;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.a2p-box::before {
+  content: '';
+  position: absolute;
+  bottom: -50px; right: -50px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.1);
+}
+
+.a2p-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.a2p-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 24px;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.a2p-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.a2p-step {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+
+.a2p-step-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+
+.a2p-step-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.a2p-step-desc {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.5;
+}
+
+.a2p-note {
+  margin-top: 20px;
+  padding: 14px 18px;
+  background: rgba(201,168,76,0.1);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  font-size: 13px;
+  color: var(--gold-light);
+  line-height: 1.5;
+}
+
+/* PRICING */
+.pricing-wrap {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.pricing-top {
+  background: var(--teal-dark);
+  padding: 32px 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.pricing-top-left .pt-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 8px;
+}
+
+.pricing-top-left .pt-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.pricing-top-left .pt-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  max-width: 380px;
+  line-height: 1.6;
+}
+
+.pricing-top-right { text-align: right; }
+
+.pricing-amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 600;
+  color: var(--gold-light);
+  line-height: 1;
+}
+
+.pricing-amount-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 4px;
+}
+
+.pricing-bottom { padding: 28px 36px; }
+
+.pricing-includes-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.pricing-includes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.pi-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-mid);
+}
+
+.pi-check {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--teal-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  font-size: 9px;
+  color: var(--teal-light);
+  font-weight: 700;
+}
+
+.pricing-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 20px 0;
+}
+
+.va-box {
+  background: var(--gold-pale);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 8px;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.va-box-left .vb-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #7a5c1e;
+  margin-bottom: 4px;
+}
+
+.va-box-left .vb-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.va-box-left .vb-desc {
+  font-size: 12px;
+  color: #8a6a2e;
+  line-height: 1.5;
+}
+
+.va-box-right { text-align: right; }
+
+.va-rate {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--teal-dark);
+  line-height: 1;
+}
+
+.va-rate-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+/* TIMELINE */
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.tl-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tl-card-header {
+  background: var(--teal-dark);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tl-card-week {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+
+.tl-card-days {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+}
+
+.tl-card-body { padding: 16px 18px; }
+
+.tl-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--teal-dark);
+  margin-bottom: 8px;
+}
+
+.tl-item {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tl-item:last-child { border-bottom: none; }
+
+.tl-item::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--teal-light);
+  flex-shrink: 0;
+}
+
+.tl-note {
+  background: var(--teal-pale);
+  border-left: 3px solid var(--teal-light);
+  border-radius: 0 6px 6px 0;
+  padding: 14px 18px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--teal-mid);
+  line-height: 1.6;
+}
+
+/* NEXT STEPS */
+.steps-list { display: flex; flex-direction: column; gap: 10px; }
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+  transition: box-shadow 0.2s;
+}
+
+.step-item:hover { box-shadow: var(--shadow); }
+
+.step-num {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--teal-dark);
+  color: var(--gold-light);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-body {}
+.step-title { font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 3px; }
+.step-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+/* FOOTER */
+.footer {
+  background: var(--teal-dark);
+  padding: 36px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--white);
+}
+
+.footer-title { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+.footer-contact { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.8; text-align: right; }
+.footer-contact a { color: var(--gold-light); text-decoration: none; }
+
+@media (max-width: 640px) {
+  .nav { padding: 0 16px; }
+  .nav-links { display: none; }
+  .hero { padding: 40px 20px; }
+  .hero h1 { font-size: 34px; }
+  .container { padding: 0 20px; }
+  .info-grid { grid-template-columns: 1fr 1fr; }
+  .pipeline-cols { grid-template-columns: repeat(3, 140px); }
+  .dash-stats { grid-template-columns: 1fr 1fr; }
+  .a2p-steps { grid-template-columns: 1fr; }
+  .pricing-top { flex-direction: column; }
+  .pricing-top-right { text-align: left; }
+  .pricing-includes { grid-template-columns: 1fr; }
+  .timeline-grid { grid-template-columns: 1fr; }
+  .footer { flex-direction: column; }
+  .footer-contact { text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">Elite Credit Group × Triuni</div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('overview')" class="active" id="nav-overview">Overview</a></li>
+    <li><a onclick="showPage('flow')" id="nav-flow">System Flow</a></li>
+    <li><a onclick="showPage('mockups')" id="nav-mockups">System Preview</a></li>
+    <li><a onclick="showPage('a2p')" id="nav-a2p">A2P Compliance</a></li>
+    <li><a onclick="showPage('pricing')" id="nav-pricing">Investment</a></li>
+    <li><a onclick="showPage('timeline')" id="nav-timeline">Timeline</a></li>
+    <li><a onclick="showPage('landing')" id="nav-landing">Landing Page</a></li>
+    <li><a onclick="showPage('next')" id="nav-next">Next Steps</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE: OVERVIEW -->
+<div class="page active" id="page-overview">
+  <div class="hero">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-circle"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">System Proposal</div>
+      <h1>Building <em>Elite Credit Group's</em> GHL System from Scratch</h1>
+      <p class="hero-sub">A complete GoHighLevel build covering your intake, lead pipeline, payment workflow, SMS and email follow-ups — all running natively inside GHL. No third-party tools needed.</p>
+      <div class="hero-cards">
+        <div class="hero-card">
+          <div class="hero-card-label">Prepared for</div>
+          <div class="hero-card-value">Elite Credit Group</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">Prepared by</div>
+          <div class="hero-card-value">Triuni Unabia</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">Project Timeline</div>
+          <div class="hero-card-value">2 – 3 Weeks</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">Date</div>
+          <div class="hero-card-value">May 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="container">
+    <div class="section">
+      <div class="section-eyebrow">What I understand</div>
+      <h2 class="section-title">Your Business & Current Setup</h2>
+      <p class="section-intro">Elite Credit Group helps individuals improve their credit through strategy, education, and a structured dispute process. Here's what we're building around.</p>
+
+      <style>
+        .ba-table { width: 100%; border-collapse: collapse; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }
+        .ba-table thead tr { background: var(--teal-dark); }
+        .ba-table thead th { padding: 14px 20px; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.5); text-align: left; }
+        .ba-table thead th:first-child { color: rgba(255,255,255,0.5); }
+        .ba-table thead th.col-before { color: #f87171; }
+        .ba-table thead th.col-after { color: var(--gold-light); }
+        .ba-table tbody tr { border-bottom: 1px solid var(--border); background: var(--white); transition: background 0.15s; }
+        .ba-table tbody tr:last-child { border-bottom: none; }
+        .ba-table tbody tr:hover { background: var(--off-white); }
+        .ba-table tbody td { padding: 14px 20px; font-size: 14px; vertical-align: middle; }
+        .ba-table tbody td:first-child { font-weight: 600; color: var(--text-dark); width: 22%; }
+        .ba-before { color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+        .ba-before .strike { text-decoration: line-through; color: #f87171; font-weight: 500; }
+        .ba-after { color: var(--teal-mid); display: flex; align-items: center; gap: 8px; font-weight: 600; }
+        .ba-badge { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 3px; letter-spacing: 0.5px; text-transform: uppercase; }
+        .badge-removed { background: #fee2e2; color: #b91c1c; }
+        .badge-native { background: var(--teal-pale); color: var(--teal-mid); }
+        .badge-kept { background: var(--gold-pale); color: #7a5c1e; }
+      </style>
+
+      <table class="ba-table">
+        <thead>
+          <tr>
+            <th>Tool / Function</th>
+            <th class="col-before">Current Setup</th>
+            <th class="col-after">After GHL Build</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>💬 SMS & Texting</td>
+            <td><div class="ba-before"><span class="strike">Textla</span><span class="ba-badge badge-removed">3rd party</span></div></td>
+            <td><div class="ba-after">GHL Native SMS <span class="ba-badge badge-native">native</span></div></td>
+          </tr>
+          <tr>
+            <td>✍️ Contracts</td>
+            <td><div class="ba-before"><span class="strike">Signwell</span><span class="ba-badge badge-removed">3rd party</span></div></td>
+            <td><div class="ba-after">GHL Documents <span class="ba-badge badge-native">native</span></div></td>
+          </tr>
+          <tr>
+            <td>📄 Invoicing</td>
+            <td><div class="ba-before"><span class="strike">Invoice to Go</span><span class="ba-badge badge-removed">3rd party</span></div></td>
+            <td><div class="ba-after">GHL Invoices <span class="ba-badge badge-native">native</span></div></td>
+          </tr>
+          <tr>
+            <td>💳 Payments</td>
+            <td><div class="ba-before">NMI <span class="ba-badge badge-kept">stays</span></div></td>
+            <td><div class="ba-after">NMI via GHL <span class="ba-badge badge-native">integrated</span></div></td>
+          </tr>
+          <tr>
+            <td>📊 Credit Reports</td>
+            <td><div class="ba-before">SmartCredit.com <span class="ba-badge badge-kept">stays</span></div></td>
+            <td><div class="ba-after">SmartCredit link in intake form <span class="ba-badge badge-native">embedded</span></div></td>
+          </tr>
+          <tr>
+            <td>👥 CRM & Pipeline</td>
+            <td><div class="ba-before"><span class="strike">No CRM system</span></div></td>
+            <td><div class="ba-after">Full GHL CRM + B2C/B2B pipelines <span class="ba-badge badge-native">new</span></div></td>
+          </tr>
+          <tr>
+            <td>📧 Email Follow-ups</td>
+            <td><div class="ba-before"><span class="strike">Manual</span></div></td>
+            <td><div class="ba-after">Automated GHL sequences <span class="ba-badge badge-native">new</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-eyebrow">The Build Plan</div>
+      <h2 class="section-title">How We'll Build Your System</h2>
+      <p class="section-intro">The entire build is broken into 4 phases. Each phase builds on the last so the system grows cleanly without breaking anything already in place.</p>
+
+      <div class="phases">
+        <div class="phase">
+          <div class="phase-connector"></div>
+          <div class="phase-num">1</div>
+          <div class="phase-body">
+            <div class="phase-title">Intake Form, Landing Page & Lead Capture</div>
+            <div class="phase-week">Week 1</div>
+            <div class="phase-desc">Build the interest form for new leads with conditional logic — if they have a credit report they upload it directly, if they don't the form shows the SmartCredit link automatically. Every submission creates a new contact and drops them into the pipeline with the right tags.</div>
+            <div class="phase-tags">
+              <span class="tag tag-teal">GHL Form Builder</span>
+              <span class="tag tag-teal">SmartCredit Link</span>
+              <span class="tag tag-teal">Contact Auto-Create</span>
+              <span class="tag tag-teal">B2C + B2B Pipelines</span>
+              <span class="tag tag-gold">Landing Page</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-connector"></div>
+          <div class="phase-num">2</div>
+          <div class="phase-body">
+            <div class="phase-title">Lead to Client Pipeline & Payment Automation</div>
+            <div class="phase-week">Week 1 – 2</div>
+            <div class="phase-desc">Set up pipeline stages from new lead all the way to active client. When a lead moves to client, the system automatically sends the payment link via NMI, generates the invoice inside GHL, and triggers the contract for e-signature — all natively, no third-party apps.</div>
+            <div class="phase-tags">
+              <span class="tag tag-teal">Pipeline Stages</span>
+              <span class="tag tag-teal">NMI Payment Link</span>
+              <span class="tag tag-teal">GHL Invoices</span>
+              <span class="tag tag-gold">GHL Documents (e-sign)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-connector"></div>
+          <div class="phase-num">3</div>
+          <div class="phase-body">
+            <div class="phase-title">Email & SMS Follow-up Campaigns</div>
+            <div class="phase-week">Week 2</div>
+            <div class="phase-desc">Build email and SMS follow-up sequences for leads who don't respond right away plus nurture sequences for active clients. SMS will run natively in GHL after A2P 10DLC is approved. Separate sequences for B2C leads, B2B referral partners, and post-payment clients.</div>
+            <div class="phase-tags">
+              <span class="tag tag-teal">Email Sequences</span>
+              <span class="tag tag-teal">GHL Native SMS</span>
+              <span class="tag tag-teal">B2C Nurture Flow</span>
+              <span class="tag tag-gold">B2B Referral Flow</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">4</div>
+          <div class="phase-body">
+            <div class="phase-title">CRM Optimization, QA Testing & Handover</div>
+            <div class="phase-week">Week 2 – 3</div>
+            <div class="phase-desc">Set up custom fields, tags, and segmentation so the CRM stays clean as the team scales. Full end-to-end QA testing of every workflow and integration before handover. Walkthrough documentation provided so the team knows exactly how the system works.</div>
+            <div class="phase-tags">
+              <span class="tag tag-teal">CRM Tagging</span>
+              <span class="tag tag-teal">Custom Fields</span>
+              <span class="tag tag-teal">End-to-End QA</span>
+              <span class="tag tag-gold">Walkthrough Docs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: SYSTEM FLOW -->
+<div class="page" id="page-flow">
+  <div class="hero" style="padding: 48px;">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-circle"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">System Flow</div>
+      <h1>The Full <em>Client Journey</em> Inside GHL</h1>
+      <p class="hero-sub">From the first touchpoint all the way to an active paying client — every step automated and connected inside one system.</p>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="container">
+    <div class="section">
+      <style>
+        .flow-wrap { display: flex; flex-direction: column; gap: 0; align-items: stretch; }
+
+        .flow-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 0; }
+        .flow-row-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 580px; margin: 0 auto; }
+
+        .flow-arrow-down { display: flex; justify-content: center; align-items: center; height: 48px; flex-direction: column; gap: 0; }
+        .flow-arrow-line { width: 2px; height: 20px; background: var(--border); }
+        .flow-arrow-head { width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-top: 9px solid var(--border); }
+
+        .flow-arrow-row { display: grid; grid-template-columns: repeat(3, 1fr); }
+        .flow-arrow-row-2 { display: grid; grid-template-columns: repeat(2, 1fr); max-width: 580px; margin: 0 auto; width: 100%; }
+
+        .flow-node {
+          background: var(--white);
+          border: 1.5px solid var(--border);
+          border-radius: 10px;
+          padding: 18px 20px;
+          position: relative;
+          transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .flow-node:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+
+        .flow-node.node-trigger { border-color: var(--teal-light); background: var(--teal-pale); }
+        .flow-node.node-action { border-color: var(--border); }
+        .flow-node.node-payment { border-color: #059669; background: #ecfdf5; }
+        .flow-node.node-sms { border-color: #7c3aed; background: #f5f3ff; }
+        .flow-node.node-email { border-color: #0891b2; background: #ecfeff; }
+        .flow-node.node-contract { border-color: var(--gold); background: var(--gold-pale); }
+        .flow-node.node-outcome { border-color: var(--teal-dark); background: var(--teal-dark); color: var(--white); }
+
+        .flow-node-step {
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          color: var(--text-muted);
+          margin-bottom: 6px;
+        }
+
+        .flow-node.node-trigger .flow-node-step { color: var(--teal-mid); }
+        .flow-node.node-outcome .flow-node-step { color: rgba(255,255,255,0.5); }
+
+        .flow-node-icon { font-size: 22px; margin-bottom: 8px; }
+
+        .flow-node-title {
+          font-size: 14px;
+          font-weight: 700;
+          color: var(--text-dark);
+          margin-bottom: 4px;
+          line-height: 1.3;
+        }
+
+        .flow-node.node-outcome .flow-node-title { color: var(--white); }
+
+        .flow-node-desc {
+          font-size: 12px;
+          color: var(--text-muted);
+          line-height: 1.5;
+        }
+
+        .flow-node.node-outcome .flow-node-desc { color: rgba(255,255,255,0.6); }
+
+        .flow-node-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+
+        .flow-node-tag {
+          font-size: 10px;
+          font-weight: 600;
+          padding: 2px 7px;
+          border-radius: 3px;
+          background: rgba(255,255,255,0.7);
+          color: var(--text-muted);
+        }
+
+        .flow-node.node-trigger .flow-node-tag { background: rgba(30,128,119,0.12); color: var(--teal-mid); }
+        .flow-node.node-payment .flow-node-tag { background: rgba(5,150,105,0.1); color: #065f46; }
+        .flow-node.node-sms .flow-node-tag { background: rgba(124,58,237,0.1); color: #5b21b6; }
+        .flow-node.node-email .flow-node-tag { background: rgba(8,145,178,0.1); color: #0e7490; }
+        .flow-node.node-contract .flow-node-tag { background: rgba(201,168,76,0.15); color: #7a5c1e; }
+
+        .flow-section-label {
+          text-align: center;
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: var(--text-muted);
+          margin: 28px 0 16px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .flow-section-label::before,
+        .flow-section-label::after {
+          content: '';
+          flex: 1;
+          height: 1px;
+          background: var(--border);
+        }
+      </style>
+
+      <div class="flow-wrap">
+
+        <!-- ROW 1: Traffic Sources -->
+        <div class="flow-section-label">Traffic Sources</div>
+        <div class="flow-row">
+          <div class="flow-node node-trigger">
+            <div class="flow-node-step">Source 01</div>
+            <div class="flow-node-icon">🌐</div>
+            <div class="flow-node-title">Website / Landing Page</div>
+            <div class="flow-node-desc">Organic traffic lands on the GHL landing page and fills out the intake form.</div>
+            <div class="flow-node-tags"><span class="flow-node-tag">GHL Landing Page</span></div>
+          </div>
+          <div class="flow-node node-trigger">
+            <div class="flow-node-step">Source 02</div>
+            <div class="flow-node-icon">🤝</div>
+            <div class="flow-node-title">B2B Referral Partner</div>
+            <div class="flow-node-desc">Mortgage brokers, realtors, and car dealers send leads directly into the B2B pipeline.</div>
+            <div class="flow-node-tags"><span class="flow-node-tag">B2B Pipeline</span></div>
+          </div>
+          <div class="flow-node node-trigger">
+            <div class="flow-node-step">Source 03</div>
+            <div class="flow-node-icon">📱</div>
+            <div class="flow-node-title">Social / Direct Outreach</div>
+            <div class="flow-node-desc">Leads from social media or direct SMS/email campaigns enter through the intake form.</div>
+            <div class="flow-node-tags"><span class="flow-node-tag">GHL Form</span></div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="flow-arrow-row">
+          <div class="flow-arrow-down"><div class="flow-arrow-line"></div><div class="flow-arrow-head"></div></div>
+          <div class="flow-arrow-down"><div class="flow-arrow-line"></div><div class="flow-arrow-head"></div></div>
+          <div class="flow-arrow-down"><div class="flow-arrow-line"></div><div class="flow-arrow-head"></div></div>
+        </div>
+
+        <!-- ROW 2: Intake -->
+        <div class="flow-section-label">Lead Intake</div>
+        <div class="flow-row">
+          <div class="flow-node node-action" style="grid-column: 1 / 3;">
+            <div class="flow-node-step">Step 01</div>
+            <div class="flow-node-icon">📋</div>
+            <div class="flow-node-title">Intake Form Submitted</div>
+            <div class="flow-node-desc">Lead fills out the GHL intake form. If they have a credit report they upload it. If not, the SmartCredit link appears automatically. Contact is created and tagged in GHL instantly.</div>
+            <div class="flow-node-tags">
+              <span class="flow-node-tag">Credit Report Upload</span>
+              <span class="flow-node-tag">SmartCredit Link</span>
+              <span class="flow-node-tag">Contact Auto-Create</span>
+              <span class="flow-node-tag">SMS Opt-in Consent</span>
+            </div>
+          </div>
+          <div class="flow-node node-sms">
+            <div class="flow-node-step">Step 02</div>
+            <div class="flow-node-icon">💬</div>
+            <div class="flow-node-title">Welcome SMS Sent</div>
+            <div class="flow-node-desc">GHL automatically sends a welcome text confirming the submission and setting expectations.</div>
+            <div class="flow-node-tags"><span class="flow-node-tag">GHL Native SMS</span><span class="flow-node-tag">A2P Compliant</span></div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="flow-arrow-down"><div class="flow-arrow-line"></div><div class="flow-arrow-head"></div></div>
+
+        <!-- ROW 3: Pipeline -->
+        <div class="flow-section-label">Pipeline & Follow-up</div>
+        <div class="flow-row">
+          <div class="flow-node node-action">
+            <div class="flow-node-step">Step 03</div>
+            <div class="flow-node-icon">📊</div>
+            <div class="flow-node-title">Added to Pipeline</div>
+            <div class="flow-node-desc">Lead enters the correct pipeline — B2C or B2B — and is tagged by source and status.</div>
+            <div class="flow-node-tags"><span class="flow-node-tag">B2C Pipeline</span><span class="flow-node-tag">B2B Pipeline</span></div>
+          </div>
+          <div class="flow-node node-email">
+            <div class="flow-node-step">Step 04</div>
+            <div class="flow-node-icon">📧</div>
+            <div class="flow-node-title">Email Nurture Sequence</div>
+            <div class="flow-node-desc">Automated follow-up emails sent over days 1, 3, and 7 to keep the lead warm until they convert.</div>
+            <div class="flow-node-tags"><span class="flow-node-tag">GHL Email</span><span class="flow-node-tag">Auto Follow-up</span></div>
+          </div>
+          <div class="flow-node node-sms">
+            <div class="flow-node-step">Step 05</div>
+            <div class="flow-node-icon">💬</div>
+            <div class="flow-node-title">SMS Follow-up Sequence</div>
+            <div class="flow-node-desc">Automated SMS touches sent alongside the email sequence. No manual follow-up needed.</div>
+            <div class="flow-node-tags"><span class="flow-node-tag">GHL Native SMS</span><span class="flow-node-tag">A2P Compliant</span></div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="flow-arrow-down"><div class="flow-arrow-line"></div><div class="flow-arrow-head"></div></div>
+
+        <!-- ROW 4: Conversion -->
+        <div class="flow-section-label">Lead Converts to Client</div>
+        <div class="flow-row">
+          <div class="flow-node node-payment">
+            <div class="flow-node-step">Step 06</div>
+            <div class="flow-node-icon">💳</div>
+            <div class="flow-node-title">Payment Link Sent</div>
+            <div class="flow-node-desc">When a lead is moved to Qualified, GHL automatically sends the NMI payment link and generates the invoice.</div>
+            <div class="flow-node-tags"><span class="flow-node-tag">NMI Payment</span><span class="flow-node-tag">GHL Invoice</span></div>
+          </div>
+          <div class="flow-node node-contract">
+            <div class="flow-node-step">Step 07</div>
+            <div class="flow-node-icon">✍️</div>
+            <div class="flow-node-title">Contract Sent for Signing</div>
+            <div class="flow-node-desc">GHL automatically sends the service agreement for e-signature once payment is confirmed.</div>
+            <div class="flow-node-tags"><span class="flow-node-tag">GHL Documents</span><span class="flow-node-tag">e-Signature</span></div>
+          </div>
+          <div class="flow-node node-action">
+            <div class="flow-node-step">Step 08</div>
+            <div class="flow-node-icon">✅</div>
+            <div class="flow-node-title">Lead Moves to Active Client</div>
+            <div class="flow-node-desc">Once payment and contract are done, the contact is automatically moved to Active Client stage and tagged accordingly.</div>
+            <div class="flow-node-tags"><span class="flow-node-tag">Stage Update</span><span class="flow-node-tag">Auto-tag</span></div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="flow-arrow-down"><div class="flow-arrow-line"></div><div class="flow-arrow-head"></div></div>
+
+        <!-- ROW 5: Outcomes -->
+        <div class="flow-section-label">Outcomes</div>
+        <div class="flow-row-2">
+          <div class="flow-node node-outcome">
+            <div class="flow-node-step">Outcome 01</div>
+            <div class="flow-node-icon">🎯</div>
+            <div class="flow-node-title">Zero Leads Fall Through</div>
+            <div class="flow-node-desc">Every lead is captured, tagged, and followed up automatically. No manual work, no missed opportunities.</div>
+          </div>
+          <div class="flow-node node-outcome">
+            <div class="flow-node-step">Outcome 02</div>
+            <div class="flow-node-icon">📈</div>
+            <div class="flow-node-title">Scalable Client System</div>
+            <div class="flow-node-desc">The same system handles 10 leads or 1,000. B2C and B2B managed cleanly in one GHL account.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: MOCKUPS -->
+<div class="page" id="page-mockups">
+  <div class="hero" style="padding: 48px;">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">System Preview</div>
+      <h1>What Your <em>GHL System</em> Will Look Like</h1>
+      <p class="hero-sub">Initial wireframes of the key screens inside your GHL account. These are starting points — final designs will match your brand.</p>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="container">
+    <div class="section">
+      <div class="mockup-tabs">
+        <div class="mockup-tab active" onclick="showMockup('intake')">Intake Form</div>
+        <div class="mockup-tab" onclick="showMockup('pipeline')">Pipeline</div>
+        <div class="mockup-tab" onclick="showMockup('workflow')">Workflow</div>
+        <div class="mockup-tab" onclick="showMockup('tags')">Tags & CRM</div>
+        <div class="mockup-tab" onclick="showMockup('dashboard')">Dashboard</div>
+      </div>
+
+      <!-- INTAKE FORM -->
+      <div class="mockup-panel active" id="mockup-intake">
+        <div class="mockup-frame">
+          <div class="mockup-bar">
+            <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
+            <div class="mockup-url">myelitecreditgroup.com/get-started</div>
+          </div>
+          <div class="mockup-body">
+            <div class="form-mockup-header">
+              <h3>Start Your Credit Repair Journey</h3>
+              <p>Fill out the form below and our team will reach out within 24 hours.</p>
+            </div>
+            <div class="form-row-2">
+              <div><div class="form-label">First Name</div><div class="form-input" style="display:flex;align-items:center;font-size:13px;color:#aaa;">John</div></div>
+              <div><div class="form-label">Last Name</div><div class="form-input" style="display:flex;align-items:center;font-size:13px;color:#aaa;">Smith</div></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label">Email Address</div>
+              <div class="form-input" style="display:flex;align-items:center;font-size:13px;color:#aaa;">john@email.com</div>
+            </div>
+            <div class="form-row">
+              <div class="form-label">Phone Number <span>For SMS updates</span></div>
+              <div class="form-input" style="display:flex;align-items:center;font-size:13px;color:#aaa;">(555) 000-0000</div>
+            </div>
+            <div class="form-row">
+              <div class="form-label">Do you have your credit report? <span>Required</span></div>
+              <div style="display:flex;gap:8px;margin-top:6px;">
+                <div style="flex:1;border:1.5px solid var(--teal-light);border-radius:6px;padding:10px 14px;font-size:13px;font-weight:600;color:var(--teal-dark);background:var(--teal-pale);text-align:center;">Yes, I'll upload it</div>
+                <div style="flex:1;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:13px;color:var(--text-muted);text-align:center;">No, I need one</div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-label">Upload Your Credit Report <span>PDF or image</span></div>
+              <div class="upload-box">
+                <div class="upload-box-icon">📎</div>
+                <div class="upload-box-text">Drag & drop or click to upload</div>
+                <div class="upload-box-link">Or run your credit report here via SmartCredit</div>
+              </div>
+            </div>
+            <div class="form-consent">
+              <input type="checkbox">
+              <label>I agree to receive SMS messages from Elite Credit Group. Msg & data rates may apply. Reply STOP to unsubscribe. View our <a href="#">Privacy Policy</a> and <a href="#">Terms</a>.</label>
+            </div>
+            <button class="form-btn">Submit My Information</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PIPELINE -->
+      <div class="mockup-panel" id="mockup-pipeline">
+        <div class="mockup-frame">
+          <div class="mockup-bar">
+            <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
+            <div class="mockup-url">app.gohighlevel.com / pipeline</div>
+          </div>
+          <div class="mockup-body">
+            <div style="font-size:13px;font-weight:600;color:var(--text-dark);margin-bottom:14px;">B2C Pipeline — Credit Repair Leads</div>
+            <div class="pipeline-cols">
+              <div>
+                <div class="pipeline-col-header">New Lead</div>
+                <div class="pipeline-col-body">
+                  <div class="pipeline-card">
+                    <div class="pipeline-card-name">Maria G.</div>
+                    <div class="pipeline-card-tag tag-new">New</div>
+                    <div class="pipeline-card-date">Today, 9:14am</div>
+                  </div>
+                  <div class="pipeline-card">
+                    <div class="pipeline-card-name">James T.</div>
+                    <div class="pipeline-card-tag tag-new">New</div>
+                    <div class="pipeline-card-date">Today, 8:02am</div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="pipeline-col-header">Contacted</div>
+                <div class="pipeline-col-body">
+                  <div class="pipeline-card">
+                    <div class="pipeline-card-name">Sandra L.</div>
+                    <div class="pipeline-card-tag tag-contacted">In Progress</div>
+                    <div class="pipeline-card-date">Yesterday</div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="pipeline-col-header">Qualified</div>
+                <div class="pipeline-col-body">
+                  <div class="pipeline-card">
+                    <div class="pipeline-card-name">David R.</div>
+                    <div class="pipeline-card-tag tag-qualified">Qualified</div>
+                    <div class="pipeline-card-date">May 20</div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="pipeline-col-header">Payment Sent</div>
+                <div class="pipeline-col-body">
+                  <div class="pipeline-card">
+                    <div class="pipeline-card-name">Tanya M.</div>
+                    <div class="pipeline-card-tag tag-client">Awaiting Pay</div>
+                    <div class="pipeline-card-date">May 19</div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="pipeline-col-header">Active Client</div>
+                <div class="pipeline-col-body">
+                  <div class="pipeline-card">
+                    <div class="pipeline-card-name">Chris W.</div>
+                    <div class="pipeline-card-tag tag-active">Active</div>
+                    <div class="pipeline-card-date">May 15</div>
+                  </div>
+                  <div class="pipeline-card">
+                    <div class="pipeline-card-name">Lisa K.</div>
+                    <div class="pipeline-card-tag tag-active">Active</div>
+                    <div class="pipeline-card-date">May 10</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WORKFLOW -->
+      <div class="mockup-panel" id="mockup-workflow">
+        <div class="mockup-frame">
+          <div class="mockup-bar">
+            <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
+            <div class="mockup-url">app.gohighlevel.com / workflows</div>
+          </div>
+          <div class="mockup-body">
+            <div style="font-size:13px;font-weight:600;color:var(--text-dark);margin-bottom:16px;">Lead Intake → Client Conversion Workflow</div>
+            <div class="workflow-nodes">
+              <div class="wf-node trigger">
+                <div class="wf-node-icon">⚡</div>
+                <div class="wf-node-content">
+                  <div class="wf-node-label">Trigger</div>
+                  <div class="wf-node-title">Form Submitted — Intake Form</div>
+                </div>
+              </div>
+              <div class="wf-connector"></div>
+              <div class="wf-node action">
+                <div class="wf-node-icon">👤</div>
+                <div class="wf-node-content">
+                  <div class="wf-node-label">Action</div>
+                  <div class="wf-node-title">Create Contact + Add to Pipeline</div>
+                </div>
+              </div>
+              <div class="wf-connector"></div>
+              <div class="wf-node sms">
+                <div class="wf-node-icon">💬</div>
+                <div class="wf-node-content">
+                  <div class="wf-node-label">SMS</div>
+                  <div class="wf-node-title">Send Welcome Text via GHL</div>
+                </div>
+              </div>
+              <div class="wf-connector"></div>
+              <div class="wf-node email">
+                <div class="wf-node-icon">📧</div>
+                <div class="wf-node-content">
+                  <div class="wf-node-label">Email</div>
+                  <div class="wf-node-title">Send Follow-up Email Sequence</div>
+                </div>
+              </div>
+              <div class="wf-connector"></div>
+              <div class="wf-node condition">
+                <div class="wf-node-icon">🔀</div>
+                <div class="wf-node-content">
+                  <div class="wf-node-label">Condition</div>
+                  <div class="wf-node-title">Lead Moved to "Qualified"?</div>
+                </div>
+              </div>
+              <div class="wf-connector"></div>
+              <div class="wf-node payment">
+                <div class="wf-node-icon">💳</div>
+                <div class="wf-node-content">
+                  <div class="wf-node-label">Action</div>
+                  <div class="wf-node-title">Send NMI Payment Link + GHL Invoice</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAGS -->
+      <div class="mockup-panel" id="mockup-tags">
+        <div class="mockup-frame">
+          <div class="mockup-bar">
+            <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
+            <div class="mockup-url">app.gohighlevel.com / contacts</div>
+          </div>
+          <div class="mockup-body">
+            <div class="tags-group">
+              <div class="tags-section-title">Lead Source Tags</div>
+              <div class="tags-wrap">
+                <div class="tag-pill tp-source">source:website</div>
+                <div class="tag-pill tp-source">source:referral</div>
+                <div class="tag-pill tp-source">source:b2b-partner</div>
+                <div class="tag-pill tp-source">source:social</div>
+                <div class="tag-pill tp-source">source:paid-ad</div>
+              </div>
+            </div>
+            <div class="tags-group">
+              <div class="tags-section-title">Pipeline Stage Tags</div>
+              <div class="tags-wrap">
+                <div class="tag-pill tp-stage">stage:new-lead</div>
+                <div class="tag-pill tp-stage">stage:contacted</div>
+                <div class="tag-pill tp-stage">stage:qualified</div>
+                <div class="tag-pill tp-stage">stage:payment-sent</div>
+                <div class="tag-pill tp-stage">stage:active-client</div>
+              </div>
+            </div>
+            <div class="tags-group">
+              <div class="tags-section-title">Client Type Tags</div>
+              <div class="tags-wrap">
+                <div class="tag-pill tp-client">type:b2c</div>
+                <div class="tag-pill tp-b2b">type:b2b</div>
+                <div class="tag-pill tp-client">type:referral-partner</div>
+              </div>
+            </div>
+            <div class="tags-group">
+              <div class="tags-section-title">Status Tags</div>
+              <div class="tags-wrap">
+                <div class="tag-pill tp-status">status:awaiting-report</div>
+                <div class="tag-pill tp-status">status:report-received</div>
+                <div class="tag-pill tp-status">status:contract-signed</div>
+                <div class="tag-pill tp-status">status:paid</div>
+                <div class="tag-pill tp-status">status:in-progress</div>
+                <div class="tag-pill tp-status">status:completed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DASHBOARD -->
+      <div class="mockup-panel" id="mockup-dashboard">
+        <div class="mockup-frame">
+          <div class="mockup-bar">
+            <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
+            <div class="mockup-url">app.gohighlevel.com / dashboard</div>
+          </div>
+          <div class="mockup-body">
+            <div style="font-size:15px;font-weight:600;color:var(--text-dark);margin-bottom:16px;">Elite Credit Group — Overview</div>
+            <div class="dash-stats">
+              <div class="dash-stat">
+                <div class="dash-stat-num">24</div>
+                <div class="dash-stat-label">New Leads</div>
+                <div class="dash-stat-change">↑ 12% this week</div>
+              </div>
+              <div class="dash-stat">
+                <div class="dash-stat-num">8</div>
+                <div class="dash-stat-label">Active Clients</div>
+                <div class="dash-stat-change">↑ 2 this week</div>
+              </div>
+              <div class="dash-stat">
+                <div class="dash-stat-num">5</div>
+                <div class="dash-stat-label">Awaiting Payment</div>
+                <div class="dash-stat-change" style="color:var(--gold);">Follow up needed</div>
+              </div>
+              <div class="dash-stat">
+                <div class="dash-stat-num">3</div>
+                <div class="dash-stat-label">B2B Partners</div>
+                <div class="dash-stat-change">↑ 1 this week</div>
+              </div>
+            </div>
+            <div class="dash-activity-title">Recent Activity</div>
+            <div class="dash-activity-row">
+              <div class="dash-dot" style="background:#059669;"></div>
+              <div class="dash-activity-name">Maria G.</div>
+              <div class="dash-activity-action">Submitted intake form</div>
+              <div class="dash-activity-time">2 min ago</div>
+            </div>
+            <div class="dash-activity-row">
+              <div class="dash-dot" style="background:#7c3aed;"></div>
+              <div class="dash-activity-name">Tanya M.</div>
+              <div class="dash-activity-action">Payment link sent via NMI</div>
+              <div class="dash-activity-time">18 min ago</div>
+            </div>
+            <div class="dash-activity-row">
+              <div class="dash-dot" style="background:#0891b2;"></div>
+              <div class="dash-activity-name">David R.</div>
+              <div class="dash-activity-action">Contract signed via GHL</div>
+              <div class="dash-activity-time">1 hr ago</div>
+            </div>
+            <div class="dash-activity-row">
+              <div class="dash-dot" style="background:var(--gold);"></div>
+              <div class="dash-activity-name">Realty Partners LLC</div>
+              <div class="dash-activity-action">B2B referral received</div>
+              <div class="dash-activity-time">3 hrs ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: A2P -->
+<div class="page" id="page-a2p">
+  <div class="hero" style="padding: 48px;">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Compliance</div>
+      <h1>A2P 10DLC — <em>SMS Compliance</em> Setup</h1>
+      <p class="hero-sub">Before your GHL SMS can reach clients, your business needs to be registered with US carriers. I'll handle the full setup as part of this build.</p>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="container">
+    <div class="section">
+      <div class="section-eyebrow">What is A2P 10DLC</div>
+      <h2 class="section-title">Why This Matters</h2>
+      <p class="section-intro">A2P 10DLC is a mandatory US carrier requirement for any business sending automated SMS messages. Without it, your texts won't reach clients — or worse, your number gets flagged as spam. This is non-negotiable for any credit repair company doing SMS follow-ups.</p>
+
+      <div class="a2p-box">
+        <div class="a2p-title">What I'll Handle for You</div>
+        <div class="a2p-sub">The entire registration and compliance setup is included in the build. Here's exactly what that covers:</div>
+
+        <div class="a2p-steps">
+          <div class="a2p-step">
+            <div class="a2p-step-num">STEP 01</div>
+            <div class="a2p-step-title">Brand Registration</div>
+            <div class="a2p-step-desc">Register Elite Credit Group as a verified brand inside GHL using your EIN. Includes fast-track submission for approval within 3 business days.</div>
+          </div>
+          <div class="a2p-step">
+            <div class="a2p-step-num">STEP 02</div>
+            <div class="a2p-step-title">Campaign Registration</div>
+            <div class="a2p-step-desc">Set up your SMS campaign with approved use-case descriptions and sample messages. GHL auto-submits the campaign once brand is approved.</div>
+          </div>
+          <div class="a2p-step">
+            <div class="a2p-step-num">STEP 03</div>
+            <div class="a2p-step-title">Opt-in Compliance</div>
+            <div class="a2p-step-desc">Set up compliant opt-in language on the intake form — unchecked consent checkbox, privacy policy link, and SMS terms. Required for carrier approval.</div>
+          </div>
+          <div class="a2p-step">
+            <div class="a2p-step-num">STEP 04</div>
+            <div class="a2p-step-title">SMS Workflow Activation</div>
+            <div class="a2p-step-desc">Once approved, activate all SMS workflows inside GHL. Lead follow-ups, appointment reminders, and client updates all running natively.</div>
+          </div>
+        </div>
+
+        <div class="a2p-note">
+          The one-time A2P registration fee is approximately $24 paid directly by Elite Credit Group to GHL. There's also a monthly campaign fee of up to $11/mo. These are carrier fees, not part of the project cost.
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-eyebrow">What We Need From You</div>
+      <h2 class="section-title">Required Before Registration</h2>
+      <p class="section-intro">To complete the A2P registration I'll need a few things from your end. The sooner we have these, the faster the approval goes through.</p>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-icon">🏛️</div>
+          <div class="info-card-label">Required</div>
+          <div class="info-card-value">EIN Number</div>
+          <div class="info-card-sub">Must match your legal business name on IRS records exactly</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">📋</div>
+          <div class="info-card-label">Required</div>
+          <div class="info-card-value">Legal Business Name</div>
+          <div class="info-card-sub">As registered with the IRS, not a DBA or trade name</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">🌐</div>
+          <div class="info-card-label">Required</div>
+          <div class="info-card-value">Website with Privacy Policy</div>
+          <div class="info-card-sub">Must include a Privacy Policy and Terms page — we can add these to GHL</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: PRICING -->
+<div class="page" id="page-pricing">
+  <div class="hero" style="padding: 48px;">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Investment</div>
+      <h1>Simple, Transparent <em>Rate Structure</em></h1>
+      <p class="hero-sub">No project fees, no hidden costs. I work as your dedicated Technical VA — building the system and keeping it running as your business grows.</p>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="container">
+    <div class="section">
+      <div class="section-eyebrow">How We Work Together</div>
+      <h2 class="section-title">Technical VA Arrangement</h2>
+      <p class="section-intro">The GHL build, A2P setup, integrations, and ongoing management are all covered under one simple hourly arrangement. No surprises, no add-ons — just consistent work, paid weekly.</p>
+
+      <div class="pricing-wrap">
+        <div class="pricing-top">
+          <div class="pricing-top-left">
+            <div class="pt-label">Dedicated Technical VA</div>
+            <div class="pt-title">Ongoing Weekly Engagement</div>
+            <div class="pt-desc">Full GHL build from scratch including all workflows, pipelines, A2P compliance, NMI integration, email and SMS campaigns, and ongoing management after launch. 20 hours per week, paid every week.</div>
+          </div>
+          <div class="pricing-top-right">
+            <div class="pricing-amount">$6</div>
+            <div class="pricing-amount-label">per hour</div>
+          </div>
+        </div>
+        <div class="pricing-bottom">
+          <div class="pricing-includes-title">Everything covered under this arrangement</div>
+          <div class="pricing-includes">
+            <div class="pi-item"><div class="pi-check">✓</div>Full GHL build from scratch</div>
+            <div class="pi-item"><div class="pi-check">✓</div>Intake form and landing page</div>
+            <div class="pi-item"><div class="pi-check">✓</div>B2C and B2B pipeline setup</div>
+            <div class="pi-item"><div class="pi-check">✓</div>NMI payment link automation</div>
+            <div class="pi-item"><div class="pi-check">✓</div>GHL native invoicing and contracts</div>
+            <div class="pi-item"><div class="pi-check">✓</div>Email and SMS follow-up sequences</div>
+            <div class="pi-item"><div class="pi-check">✓</div>A2P 10DLC registration and compliance</div>
+            <div class="pi-item"><div class="pi-check">✓</div>CRM tagging and custom fields</div>
+            <div class="pi-item"><div class="pi-check">✓</div>SmartCredit link in intake form</div>
+            <div class="pi-item"><div class="pi-check">✓</div>End-to-end QA testing</div>
+            <div class="pi-item"><div class="pi-check">✓</div>Ongoing system management post-launch</div>
+            <div class="pi-item"><div class="pi-check">✓</div>New workflows and updates as needed</div>
+          </div>
+
+          <div class="pricing-divider"></div>
+
+          <div class="va-box">
+            <div class="va-box-left">
+              <div class="vb-label">Weekly Summary</div>
+              <div class="vb-title">20 hrs/week at $6/hr</div>
+              <div class="vb-desc">That's $120 per week, paid every week. Simple, predictable, and easy to manage on your end. I'll send a brief update each week covering what was completed and what's coming next.</div>
+            </div>
+            <div class="va-box-right">
+              <div class="va-rate">$120</div>
+              <div class="va-rate-label">per week · paid weekly</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: TIMELINE -->
+<div class="page" id="page-timeline">
+  <div class="hero" style="padding: 48px;">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Project Timeline</div>
+      <h1>Delivered in <em>2 to 3 Weeks</em></h1>
+      <p class="hero-sub">A realistic, honest timeline that accounts for proper testing. Rushing a system this complex leads to broken automations — that extra week is what makes it reliable on day one.</p>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="container">
+    <div class="section">
+      <div class="section-eyebrow">Week by Week</div>
+      <h2 class="section-title">Build Schedule</h2>
+
+      <div class="timeline-grid">
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <div class="tl-card-week">Week 1</div>
+            <div class="tl-card-days">Days 1–7</div>
+          </div>
+          <div class="tl-card-body">
+            <div class="tl-card-title">Foundation & Intake</div>
+            <div class="tl-item">GHL account structure setup</div>
+            <div class="tl-item">Intake form with SmartCredit link</div>
+            <div class="tl-item">Landing page build</div>
+            <div class="tl-item">B2C and B2B pipeline stages</div>
+            <div class="tl-item">Contact tagging logic</div>
+            <div class="tl-item">A2P 10DLC brand registration submitted</div>
+          </div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <div class="tl-card-week">Week 2</div>
+            <div class="tl-card-days">Days 8–14</div>
+          </div>
+          <div class="tl-card-body">
+            <div class="tl-card-title">Automation & Campaigns</div>
+            <div class="tl-item">NMI payment link automation</div>
+            <div class="tl-item">GHL invoices and contracts</div>
+            <div class="tl-item">Email follow-up sequences</div>
+            <div class="tl-item">SMS workflows (pending A2P)</div>
+            <div class="tl-item">B2B referral partner flow</div>
+            <div class="tl-item">Workflow automation build</div>
+          </div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <div class="tl-card-week">Week 3</div>
+            <div class="tl-card-days">Days 15–21</div>
+          </div>
+          <div class="tl-card-body">
+            <div class="tl-card-title">QA, Testing & Handover</div>
+            <div class="tl-item">End-to-end workflow testing</div>
+            <div class="tl-item">NMI payment flow verification</div>
+            <div class="tl-item">SMS activation (post A2P approval)</div>
+            <div class="tl-item">CRM cleanup and optimization</div>
+            <div class="tl-item">Walkthrough documentation</div>
+            <div class="tl-item">Live handover call</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-note">
+        The 2-week GHL trial is a great starting point and most of the core build will be complete by then. The third week is dedicated to QA testing and SMS activation once A2P is approved — which typically takes 3 business days on its own. This isn't padding, it's what makes the system reliable from day one.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: LANDING PAGE PROTOTYPE -->
+<div class="page" id="page-landing">
+  <div class="hero" style="padding: 48px;">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Landing Page Prototype</div>
+      <h1>What Your <em>Lead Capture Page</em> Will Look Like</h1>
+      <p class="hero-sub">A close representation of the final GHL landing page — built to match Elite Credit Group's brand, convert both B2C and B2B visitors, and feed directly into the CRM pipeline.</p>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="container">
+    <div class="section">
+      <div class="section-eyebrow">Recommended Subdomain</div>
+      <h2 class="section-title">Where It Will Live</h2>
+      <p class="section-intro">The landing page will be hosted on a GHL subdomain connected to your main domain. No separate hosting needed — GHL handles it natively.</p>
+
+      <div class="info-grid" style="grid-template-columns: repeat(3,1fr); margin-bottom: 0;">
+        <div class="info-card" style="border:2px solid var(--gold); background: var(--gold-pale);">
+          <div class="info-card-icon">⭐</div>
+          <div class="info-card-label">Recommended</div>
+          <div class="info-card-value" style="font-size:15px;">start.myelitecreditgroup.com</div>
+          <div class="info-card-sub">Action-oriented. Works for B2C individuals and B2B referral partners. Clean and memorable.</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">🔗</div>
+          <div class="info-card-label">Alternative</div>
+          <div class="info-card-value" style="font-size:15px;">apply.myelitecreditgroup.com</div>
+          <div class="info-card-sub">Signals the credit process has started. Strong for B2C campaigns.</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">🔗</div>
+          <div class="info-card-label">Alternative</div>
+          <div class="info-card-value" style="font-size:15px;">portal.myelitecreditgroup.com</div>
+          <div class="info-card-sub">Feels like a dedicated client system. Good if they want a more premium feel.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px; padding:14px 18px; background:var(--teal-pale); border-left:3px solid var(--teal-light); border-radius:6px; font-size:13px; color:var(--text-mid);">
+        <strong>GHL Note:</strong> The subdomain is set up inside GHL under Settings → Domains. You point a CNAME record from your domain registrar to GHL's server — no additional hosting cost. The landing page builder is 100% native inside GHL.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-eyebrow">Live Prototype</div>
+      <h2 class="section-title">Landing Page Preview</h2>
+      <p class="section-intro">This is a close representation of the final build. Actual GHL page will use the same structure, copy, and branding. Sections, layout, and form logic are all buildable natively inside GHL's page builder.</p>
+    </div>
+  </div>
+
+  <!-- FULL WIDTH LANDING PAGE MOCKUP -->
+  <div style="background:#f1f5f9; padding: 32px 24px;">
+    <div style="max-width:900px; margin:0 auto; background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 8px 48px rgba(0,0,0,0.12);">
+
+      <!-- BROWSER BAR -->
+      <div style="background:#e2e8f0; padding:10px 16px; display:flex; align-items:center; gap:8px;">
+        <div style="width:12px;height:12px;border-radius:50%;background:#fc5c65;"></div>
+        <div style="width:12px;height:12px;border-radius:50%;background:#fed330;"></div>
+        <div style="width:12px;height:12px;border-radius:50%;background:#26de81;"></div>
+        <div style="flex:1; background:#fff; border-radius:20px; padding:5px 14px; font-size:12px; color:#64748b; margin-left:8px;">start.myelitecreditgroup.com</div>
+      </div>
+
+      <!-- LP NAV -->
+      <div style="background:#0d3b38; padding:14px 40px; display:flex; justify-content:space-between; align-items:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:20px; color:#e8cc84; letter-spacing:0.5px;">Elite Credit Group</div>
+        <div style="display:flex; gap:24px; align-items:center;">
+          <span style="font-size:13px; color:rgba(255,255,255,0.6);">Services</span>
+          <span style="font-size:13px; color:rgba(255,255,255,0.6);">About</span>
+          <span style="font-size:13px; color:rgba(255,255,255,0.6);">Contact</span>
+          <span style="background:#c9a84c; color:#0d3b38; font-size:12px; font-weight:700; padding:8px 16px; border-radius:6px;">Get Started Free</span>
+        </div>
+      </div>
+
+      <!-- LP HERO -->
+      <div style="background:linear-gradient(135deg, #0d3b38 0%, #155f59 60%, #1e8077 100%); padding:64px 40px; display:flex; gap:40px; align-items:center;">
+        <div style="flex:1;">
+          <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:20px; padding:5px 14px; margin-bottom:20px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#c9a84c;display:inline-block;"></span>
+            <span style="font-size:11px; font-weight:600; letter-spacing:1.5px; color:#c9a84c; text-transform:uppercase;">Free Credit Evaluation</span>
+          </div>
+          <h2 style="font-family:'Cormorant Garamond',serif; font-size:42px; line-height:1.15; color:#fff; margin-bottom:16px;">Take Control of Your <em style="color:#e8cc84; font-style:italic;">Credit Score</em> — Starting Today</h2>
+          <p style="font-size:15px; color:rgba(255,255,255,0.6); line-height:1.7; margin-bottom:28px; max-width:480px;">Elite Credit Group helps you challenge inaccurate negative items, strengthen your credit profile, and build a clear roadmap to financial freedom — with expert guidance every step of the way.</p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:32px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="color:#c9a84c; font-size:16px;">✓</span>
+              <span style="font-size:13px; color:rgba(255,255,255,0.7);">No Hidden Fees</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="color:#c9a84c; font-size:16px;">✓</span>
+              <span style="font-size:13px; color:rgba(255,255,255,0.7);">Personalized Plan</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="color:#c9a84c; font-size:16px;">✓</span>
+              <span style="font-size:13px; color:rgba(255,255,255,0.7);">Expert Advisors</span>
+            </div>
+          </div>
+          <div style="display:flex; gap:12px;">
+            <span style="background:#c9a84c; color:#0d3b38; font-size:14px; font-weight:700; padding:14px 28px; border-radius:8px; cursor:pointer;">Start My Free Evaluation</span>
+            <span style="border:1px solid rgba(255,255,255,0.25); color:rgba(255,255,255,0.7); font-size:14px; padding:14px 24px; border-radius:8px; cursor:pointer;">Learn More</span>
+          </div>
+        </div>
+        <!-- HERO FORM -->
+        <div style="width:320px; flex-shrink:0; background:rgba(255,255,255,0.97); border-radius:12px; padding:28px 24px; box-shadow:0 16px 40px rgba(0,0,0,0.2);">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:20px; color:#0d3b38; margin-bottom:4px;">Get Your Free Evaluation</div>
+          <div style="font-size:12px; color:#6b8c88; margin-bottom:20px;">A specialist will reach out within 24 hours.</div>
+          <div style="margin-bottom:12px;">
+            <div style="font-size:11px; font-weight:600; color:#0d3b38; margin-bottom:5px; text-transform:uppercase; letter-spacing:0.5px;">Full Name</div>
+            <div style="border:1.5px solid #d4e4e2; border-radius:6px; padding:10px 12px; font-size:13px; color:#aaa;">John Smith</div>
+          </div>
+          <div style="margin-bottom:12px;">
+            <div style="font-size:11px; font-weight:600; color:#0d3b38; margin-bottom:5px; text-transform:uppercase; letter-spacing:0.5px;">Phone Number</div>
+            <div style="border:1.5px solid #d4e4e2; border-radius:6px; padding:10px 12px; font-size:13px; color:#aaa;">(555) 000-0000</div>
+          </div>
+          <div style="margin-bottom:12px;">
+            <div style="font-size:11px; font-weight:600; color:#0d3b38; margin-bottom:5px; text-transform:uppercase; letter-spacing:0.5px;">Email Address</div>
+            <div style="border:1.5px solid #d4e4e2; border-radius:6px; padding:10px 12px; font-size:13px; color:#aaa;">john@email.com</div>
+          </div>
+          <div style="margin-bottom:16px;">
+            <div style="font-size:11px; font-weight:600; color:#0d3b38; margin-bottom:5px; text-transform:uppercase; letter-spacing:0.5px;">Do you have your credit report?</div>
+            <div style="display:flex; gap:8px;">
+              <div style="flex:1; border:1.5px solid #1e8077; background:#e8f4f3; border-radius:6px; padding:9px; font-size:12px; font-weight:600; color:#0d3b38; text-align:center;">Yes</div>
+              <div style="flex:1; border:1px solid #d4e4e2; border-radius:6px; padding:9px; font-size:12px; color:#6b8c88; text-align:center;">No — Get Mine</div>
+            </div>
+          </div>
+          <div style="font-size:10px; color:#6b8c88; margin-bottom:14px; line-height:1.5;">
+            <input type="checkbox" style="margin-right:5px;"> By submitting you agree to receive SMS from Elite Credit Group. Msg rates may apply. <span style="color:#1e8077; text-decoration:underline;">Privacy Policy</span>
+          </div>
+          <div style="background:#0d3b38; color:#e8cc84; font-size:13px; font-weight:700; padding:13px; border-radius:8px; text-align:center; cursor:pointer;">Submit My Information →</div>
+          <div style="text-align:center; font-size:11px; color:#6b8c88; margin-top:10px;">🔒 Your information is 100% secure</div>
+        </div>
+      </div>
+
+      <!-- LP TRUST BAR -->
+      <div style="background:#0d3b38; padding:16px 40px; display:flex; justify-content:center; gap:40px; flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#e8cc84;">500+</div>
+          <div style="font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:0.5px;">Clients Helped</div>
+        </div>
+        <div style="width:1px; background:rgba(255,255,255,0.1);"></div>
+        <div style="text-align:center;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#e8cc84;">4.9★</div>
+          <div style="font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:0.5px;">Average Rating</div>
+        </div>
+        <div style="width:1px; background:rgba(255,255,255,0.1);"></div>
+        <div style="text-align:center;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#e8cc84;">90 Days</div>
+          <div style="font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:0.5px;">Average Result Timeline</div>
+        </div>
+        <div style="width:1px; background:rgba(255,255,255,0.1);"></div>
+        <div style="text-align:center;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#e8cc84;">Personal & Business</div>
+          <div style="font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:0.5px;">B2C & B2B Services</div>
+        </div>
+      </div>
+
+      <!-- LP SERVICES SECTION -->
+      <div style="padding:48px 40px; background:#f8f9f7;">
+        <div style="text-align:center; margin-bottom:36px;">
+          <div style="font-size:11px; font-weight:600; letter-spacing:2px; color:#c9a84c; text-transform:uppercase; margin-bottom:8px;">What We Do</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:30px; color:#0d3b38;">Our Credit Repair Services</div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+          <div style="background:#fff; border:1px solid #d4e4e2; border-radius:10px; padding:24px; border-top:3px solid #c9a84c;">
+            <div style="font-size:28px; margin-bottom:12px;">👤</div>
+            <div style="font-size:15px; font-weight:700; color:#0d3b38; margin-bottom:8px;">Personal Credit Repair</div>
+            <div style="font-size:13px; color:#6b8c88; line-height:1.6;">Remove inaccurate negative items, raise your score, and build a stronger financial profile for mortgages, auto loans, and more.</div>
+          </div>
+          <div style="background:#fff; border:1px solid #d4e4e2; border-radius:10px; padding:24px; border-top:3px solid #1e8077;">
+            <div style="font-size:28px; margin-bottom:12px;">🏠</div>
+            <div style="font-size:15px; font-weight:700; color:#0d3b38; margin-bottom:8px;">Home Loan Credit Help</div>
+            <div style="font-size:13px; color:#6b8c88; line-height:1.6;">Dedicated strategies to improve your profile for mortgage approvals, refinancing, and homeownership goals.</div>
+          </div>
+          <div style="background:#fff; border:1px solid #d4e4e2; border-radius:10px; padding:24px; border-top:3px solid #0d3b38;">
+            <div style="font-size:28px; margin-bottom:12px;">🏢</div>
+            <div style="font-size:15px; font-weight:700; color:#0d3b38; margin-bottom:8px;">Business Credit Building</div>
+            <div style="font-size:13px; color:#6b8c88; line-height:1.6;">Boost your business credit to secure financing, establish credibility, and support your company's growth.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LP HOW IT WORKS -->
+      <div style="padding:48px 40px;">
+        <div style="text-align:center; margin-bottom:36px;">
+          <div style="font-size:11px; font-weight:600; letter-spacing:2px; color:#c9a84c; text-transform:uppercase; margin-bottom:8px;">The Process</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:30px; color:#0d3b38;">How It Works</div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+          <div style="text-align:center; padding:20px 12px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:#0d3b38; color:#e8cc84; font-family:'Cormorant Garamond',serif; font-size:20px; display:flex; align-items:center; justify-content:center; margin:0 auto 12px;">1</div>
+            <div style="font-size:13px; font-weight:700; color:#0d3b38; margin-bottom:6px;">Free Evaluation</div>
+            <div style="font-size:12px; color:#6b8c88; line-height:1.5;">Submit your info and we'll review your credit report within 24 hours.</div>
+          </div>
+          <div style="text-align:center; padding:20px 12px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:#0d3b38; color:#e8cc84; font-family:'Cormorant Garamond',serif; font-size:20px; display:flex; align-items:center; justify-content:center; margin:0 auto 12px;">2</div>
+            <div style="font-size:13px; font-weight:700; color:#0d3b38; margin-bottom:6px;">Custom Strategy</div>
+            <div style="font-size:12px; color:#6b8c88; line-height:1.5;">We build a personalized plan targeting the specific issues on your report.</div>
+          </div>
+          <div style="text-align:center; padding:20px 12px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:#0d3b38; color:#e8cc84; font-family:'Cormorant Garamond',serif; font-size:20px; display:flex; align-items:center; justify-content:center; margin:0 auto 12px;">3</div>
+            <div style="font-size:13px; font-weight:700; color:#0d3b38; margin-bottom:6px;">Dispute Process</div>
+            <div style="font-size:12px; color:#6b8c88; line-height:1.5;">We communicate directly with credit bureaus and creditors on your behalf.</div>
+          </div>
+          <div style="text-align:center; padding:20px 12px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:#c9a84c; color:#0d3b38; font-family:'Cormorant Garamond',serif; font-size:20px; display:flex; align-items:center; justify-content:center; margin:0 auto 12px;">4</div>
+            <div style="font-size:13px; font-weight:700; color:#0d3b38; margin-bottom:6px;">Results & Monitoring</div>
+            <div style="font-size:12px; color:#6b8c88; line-height:1.5;">Track your progress. We stay with you until your goals are achieved.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LP B2B SECTION -->
+      <div style="padding:40px; background:#0d3b38;">
+        <div style="display:flex; gap:40px; align-items:center;">
+          <div style="flex:1;">
+            <div style="font-size:11px; font-weight:600; letter-spacing:2px; color:#c9a84c; text-transform:uppercase; margin-bottom:12px;">For Partners</div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#fff; margin-bottom:12px; line-height:1.3;">Refer Clients, <em style="color:#e8cc84;">Grow Together</em></div>
+            <p style="font-size:13px; color:rgba(255,255,255,0.6); line-height:1.7; margin-bottom:20px;">Are you a mortgage broker, realtor, or car dealer with clients who need credit repair? Partner with Elite Credit Group and send your referrals to a team you can trust.</p>
+            <div style="background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.25); border-radius:8px; padding:16px 20px; display:inline-block; cursor:pointer;">
+              <span style="font-size:13px; font-weight:600; color:#e8cc84;">Become a Referral Partner →</span>
+            </div>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:14px 16px;">
+              <span style="font-size:20px;">🏠</span>
+              <div><div style="font-size:13px; font-weight:600; color:#fff;">Mortgage Brokers</div><div style="font-size:12px; color:rgba(255,255,255,0.5);">Help clients qualify faster</div></div>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:14px 16px;">
+              <span style="font-size:20px;">🏡</span>
+              <div><div style="font-size:13px; font-weight:600; color:#fff;">Real Estate Agents</div><div style="font-size:12px; color:rgba(255,255,255,0.5);">Get buyers ready to close</div></div>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:14px 16px;">
+              <span style="font-size:20px;">🚗</span>
+              <div><div style="font-size:13px; font-weight:600; color:#fff;">Auto Dealerships</div><div style="font-size:12px; color:rgba(255,255,255,0.5);">Turn declines into approvals</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LP FOOTER CTA -->
+      <div style="padding:48px 40px; text-align:center; background:#f8f9f7; border-top:1px solid #d4e4e2;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:30px; color:#0d3b38; margin-bottom:10px;">Ready to Start Your Credit Journey?</div>
+        <p style="font-size:14px; color:#6b8c88; margin-bottom:24px;">Your credit health is key to your success. Take the first step today — it's free.</p>
+        <span style="background:#0d3b38; color:#e8cc84; font-size:14px; font-weight:700; padding:16px 36px; border-radius:8px; cursor:pointer; display:inline-block;">Get My Free Evaluation Now</span>
+        <div style="margin-top:20px; font-size:12px; color:#6b8c88;">📞 Questions? Call or text us anytime.</div>
+      </div>
+
+    </div><!-- end mockup wrapper -->
+  </div><!-- end bg -->
+
+  <div class="container" style="padding-top:0;">
+    <div class="section">
+      <div class="section-eyebrow">Build Notes</div>
+      <h2 class="section-title">What's GHL-Native vs Custom</h2>
+      <p class="section-intro">Everything shown above is buildable 100% inside GoHighLevel with no external tools or code required. Here's a quick reference.</p>
+      <div class="info-grid" style="grid-template-columns:repeat(2,1fr);">
+        <div class="info-card" style="border-left:3px solid #059669;">
+          <div class="info-card-icon">✅</div>
+          <div class="info-card-label">GHL Native — No Code Needed</div>
+          <div class="info-card-value" style="font-size:14px; line-height:1.8;">Hero section & copy<br>Intake form with file upload<br>SMS consent checkbox<br>Navigation bar<br>Service sections<br>Trust stats bar<br>B2B referral section<br>Footer CTA<br>Mobile responsive layout</div>
+        </div>
+        <div class="info-card" style="border-left:3px solid var(--gold);">
+          <div class="info-card-icon">⚙️</div>
+          <div class="info-card-label">Requires Configuration</div>
+          <div class="info-card-value" style="font-size:14px; line-height:1.8;">SmartCredit link inside form<br>NMI payment on confirmation page<br>Pipeline trigger on form submit<br>A2P consent language (legal copy)<br>Subdomain CNAME setup<br>Privacy Policy & Terms pages</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: NEXT STEPS -->
+<div class="page" id="page-next">
+  <div class="hero" style="padding: 48px;">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Let's Get Started</div>
+      <h1>Ready to <em>Move Forward?</em></h1>
+      <p class="hero-sub">Here's exactly what happens next once we agree to move forward.</p>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="container">
+    <div class="section">
+      <div class="section-eyebrow">Action Plan</div>
+      <h2 class="section-title">Next Steps</h2>
+
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">Proposal Review & Agreement</div>
+            <div class="step-desc">Review this proposal and confirm you're happy with the scope, timeline, and pricing. Any questions — just reach out before we move forward.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">Agreement & Rate Confirmation</div>
+            <div class="step-desc">We confirm the hourly rate, weekly hours, and payment schedule. I'll send a simple agreement covering the scope and terms so we're both clear before work starts.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">GHL Access & Onboarding</div>
+            <div class="step-desc">You'll give me access to your GHL account. I'll also need your EIN and business details to start the A2P 10DLC registration right away.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">Build Begins</div>
+            <div class="step-desc">I start on Phase 1 immediately. You'll get regular updates throughout so you always know where things stand. No radio silence.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <div class="step-title">Ongoing as Your Technical VA</div>
+            <div class="step-desc">After handover I stay on as your dedicated Technical VA — managing the system, building new workflows, and supporting the team as Elite Credit Group grows. Weekly pay, every week.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:36px;background:var(--teal-dark);border-radius:12px;padding:32px 36px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;">
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--white);margin-bottom:4px;">Ready to get started?</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);">Reach out via WhatsApp or email and let's lock in the start date.</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:13px;color:var(--gold-light);margin-bottom:4px;">triuni@triunisolutions.com</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);">WhatsApp: +63 954 3595 150</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div>
+    <div class="footer-name">Triuni Unabia</div>
+    <div class="footer-title">Workflow Automation Engineer</div>
+  </div>
+  <div class="footer-contact">
+    <a href="mailto:triuni@triunisolutions.com">triuni@triunisolutions.com</a><br>
+    <a href="https://systems.triunisolutions.com">systems.triunisolutions.com</a><br>
+    WhatsApp: +63 954 3595 150
+  </div>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.getElementById('nav-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function showMockup(id) {
+  document.querySelectorAll('.mockup-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.mockup-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('mockup-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
